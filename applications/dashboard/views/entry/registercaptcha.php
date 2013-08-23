@@ -7,7 +7,7 @@
    $CaptchaPublicKey = Gdn::Config('Garden.Registration.CaptchaPublicKey');
    $Request = Gdn::Request();
    $CaptchaSSL = (StringBeginsWith(Url('/', TRUE), 'https') || Gdn::Request()->GetValueFrom(Gdn_Request::INPUT_SERVER, 'SERVER_PORT') == 443) ? TRUE : FALSE;
-   
+
    // Make sure to force this form to post to the correct place in case the view is
    // rendered within another view (ie. /dashboard/entry/index/):
    echo $this->Form->Open(array('Action' => Url('/entry/register'), 'id' => 'Form_User_Register'));
@@ -41,11 +41,11 @@
             echo '<span id="PasswordsDontMatch" class="Incorrect" style="display: none;">'.T("Passwords don't match").'</span>';
          ?>
       </li>
-      <li class="Gender">
-         <?php
-            echo $this->Form->Label('Gender', 'Gender');
-            echo $this->Form->RadioList('Gender', $this->GenderOptions, array('default' => 'm'))
-         ?>
+      <li>
+        <?php
+            echo $this->Form->Label('Purchase Code', 'InvitationCode');
+            echo $this->Form->TextBox('InvitationCode', array('value' => $this->InvitationCode));
+        ?>
       </li>
       <li class="CaptchaInput"><?php
          echo $this->Form->Label("Security Check", '');
